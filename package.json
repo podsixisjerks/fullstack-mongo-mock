@@ -4,8 +4,8 @@
   "description": "a repo to practice working with a full stack application using a nosql database",
   "main": "./server/index.js",
   "scripts": {
-    "build": "webpack -w",
-    "start": "nodemon"
+    "build": "webpack -d --w",
+    "start": "nodemon ./server/index.js"
   },
   "repository": "https://github.com/atk1213/fullstack-mongo-mock",
   "license": "MIT",
@@ -15,11 +15,14 @@
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "jquery": "^1.9.1",
+    "mongoose": "^4.9.6",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
+    "path": "^0.12.7",
+    "popper.js": "^1.16.0",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "mongoose": "^4.9.6"
+    "react-dom": "^16.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

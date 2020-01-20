@@ -1,4 +1,5 @@
-const Product = require('./');
+var db = require('../db/index.js').db;
+var Product = require('../db/index.js').Product;
 var mongoose = require('mongoose');
 
 // Fill in the definition of insertMockData so that when 
@@ -32,8 +33,13 @@ const createProducts = () => {
 
 const insertMockData = function() {
   // Complete me please
-
+  let mockProds = createProducts();
+  Product.create(mockProds)
+    .then( () => console.log('products created successfully'))
+    .catch( err => console.error(err) );
 };
+
+insertMockData();
 
 // NOTE: DO NOT invoke this function as part of your
 // server code - it is meant to only be run once so that

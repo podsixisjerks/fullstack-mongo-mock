@@ -1,7 +1,7 @@
 import React from 'react';
-import ProductList from './ProductList';
-import ProductViewer from './ProductViewer';
-import Search from './Search';
+import ProductList from './ProductList.jsx';
+import ProductViewer from './ProductViewer.jsx';
+import Search from './Search.jsx';
 
 import axios from 'axios';
 
@@ -9,13 +9,28 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-
+      curr_bid: null,
+      list: []
     }
 
+    this.getProducts = this.getProducts.bind(this);
+  }
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  getProducts() {
+    axios.get('/name/products')
+      .then( data => {
+        this.setState({
+          list: data.data
+        });
+      })
+      .catch( err => console.error(err) );
   }
 
   render(){
-  
     return(
       <div>
         <div>
@@ -32,10 +47,10 @@ export default class App extends React.Component {
             <ProductViewer />
           </div>
           <div className="col-md-5 product-list-container">
-            <ProductList  />
+            <ProductList list={this.state.list} />
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
