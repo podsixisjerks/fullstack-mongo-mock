@@ -1,5 +1,4 @@
 import React from 'react';
-// import { ProgressPlugin } from 'webpack';
   
 var Search = (props) => (
   <div className="search-bar form-inline">
