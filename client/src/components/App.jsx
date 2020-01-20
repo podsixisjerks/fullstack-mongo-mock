@@ -15,13 +15,11 @@ export default class App extends React.Component {
 
     this.getProducts = this.getProducts.bind(this);
     this.changeViewer = this.changeViewer.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
     this.getProducts();
-    // this.setState({
-    //   viewer: this.state.list[0]
-    // });
   }
 
   getProducts() {
@@ -55,6 +53,17 @@ export default class App extends React.Component {
     });
   }
 
+  handleSearch(term) {
+    let _id = [];
+    this.state.list.forEach ( item => {
+      if ((item.item.toLowerCase()).includes(term.toLowerCase())) {
+        _id.push(item._id);
+      }
+    });
+    this.changeViewer(_id[0]);
+    document.getElementById("search").value = ''
+  }
+
   render(){
     return(
       <div>
@@ -64,7 +73,7 @@ export default class App extends React.Component {
         </div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search search={this.handleSearch}/>
           </div>
         </nav>
         <div className="row main-container">
