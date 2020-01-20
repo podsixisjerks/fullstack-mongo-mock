@@ -10,10 +10,12 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       curr_bid: null,
+      viewer: {},
       list: []
     }
 
     this.getProducts = this.getProducts.bind(this);
+    this.changeViewer = this.changeViewer.bind(this);
   }
 
   componentDidMount() {
@@ -24,10 +26,21 @@ export default class App extends React.Component {
     axios.get('/name/products')
       .then( data => {
         this.setState({
+          viewer: data.data[0],
           list: data.data
         });
       })
       .catch( err => console.error(err) );
+  }
+
+  changeViewer(_id) {
+    this.state.list.forEach( item => {
+      if (item._id === _id) {
+        this.setState({
+          viewer: item
+        });
+      }
+    });
   }
 
   render(){
@@ -44,10 +57,10 @@ export default class App extends React.Component {
         </nav>
         <div className="row main-container">
           <div className="col-md-7 product-viewer-container">
-            <ProductViewer />
+            <ProductViewer item={this.state.viewer}/>
           </div>
           <div className="col-md-5 product-list-container">
-            <ProductList list={this.state.list} />
+            <ProductList list={this.state.list.slice(0, 10)} enhance={this.changeViewer}/>
           </div>
         </div>
       </div>

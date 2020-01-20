@@ -5,7 +5,7 @@ const ProductList = (props) => {
    return(
     <div className='product-list'>
       {props.list.map( (item, index) => (
-        <Products item={item} key={index} />
+        <Products item={item} key={index} viewer={props.enhance}/>
       ))}
     </div>
   )

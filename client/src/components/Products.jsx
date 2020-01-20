@@ -5,7 +5,7 @@ const Products = (props) => {
    return(
     <div className='product-list-entry'>
       <img className="listimages" src={image} ></img>
-      <div className="product-list-entry-title">{item}
+      <div className="product-list-entry-title" onClick={() => props.viewer(_id)}>{item}
       <br></br>
       <br></br>
         <div className="product-list-entry-detail">
